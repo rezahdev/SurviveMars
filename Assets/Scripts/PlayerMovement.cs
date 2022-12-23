@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private CharacterController characterController;
     private Vector3 direction;
