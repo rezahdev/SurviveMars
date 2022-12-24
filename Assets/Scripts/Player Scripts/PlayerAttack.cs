@@ -46,7 +46,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 nextTimeToFire = Time.time + 1f / fireRate;
                 weaponManager.GetCurrentWeapon().Shoot();
-                // BulletFired()
+                FireBullet();
             }
         }
         else
@@ -61,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
                 if(weaponManager.GetCurrentWeapon().bulletType == WeaponBulletType.BULLET)
                 {
                     weaponManager.GetCurrentWeapon().Shoot();
-                    // BulletFired()
+                    FireBullet();
                 }
             }
         }
@@ -82,6 +82,16 @@ public class PlayerAttack : MonoBehaviour
                 zoomAnimator.Play(AnimationTag.ZOOM_OUT);
                 crosshair.SetActive(true);
             }
+        }
+    }
+
+    void FireBullet()
+    {
+        RaycastHit hit;
+
+        if(Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit))
+        {
+            print("Hit: " + hit.transform.gameObject.name);
         }
     }
 }
