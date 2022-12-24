@@ -931,6 +931,20 @@ MonoBehaviour:
   - {fileID: 1106615872}
   - {fileID: 162770062}
   - {fileID: 1391472404}
+--- !u!114 &1669252499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729706042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 316f883de6d1e524a87df29361a72f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 15
+  damage: 20
 --- !u!1 &1786510409 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1475172827634054056, guid: c390cfbc8d677bb4fba858134bbb6590, type: 3}
@@ -1069,6 +1083,10 @@ PrefabInstance:
     - target: {fileID: 1475172827634054056, guid: c390cfbc8d677bb4fba858134bbb6590, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475172827634054056, guid: c390cfbc8d677bb4fba858134bbb6590, type: 3}
+      propertyPath: m_TagString
+      value: Axe
       objectReference: {fileID: 0}
     - target: {fileID: 2685029456578175950, guid: c390cfbc8d677bb4fba858134bbb6590, type: 3}
       propertyPath: m_RootOrder
@@ -1252,7 +1270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7905296252800031213, guid: c390cfbc8d677bb4fba858134bbb6590, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7905296252807293495, guid: c390cfbc8d677bb4fba858134bbb6590, type: 3}
       propertyPath: m_Controller
