@@ -10,9 +10,18 @@ public class PlayerAttack : MonoBehaviour
     public float damage = 20f;
     private float nextTimeToFire;
 
+    private Animator zoomAnimator;
+    private bool isZoomed;
+
+    private Camera mainCamera;
+    private GameObject crosshair;
+
     void Awake()
     {
         weaponManager = GetComponent<WeaponManager>();
+        zoomAnimator = transform.Find(Tags.LOOK_ROOT).transform.Find(Tags.ZOOM_CAMERA).GetComponent<Animator>();
+        crosshair = GameObject.FindWithTag(Tags.CROSSHAIR);
+        mainCamera = Camera.main;
     }
 
     // Start is called before the first frame update
@@ -25,6 +34,7 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         Shoot();
+        ZoomInAndOut();
     }
 
     void Shoot()
@@ -53,6 +63,24 @@ public class PlayerAttack : MonoBehaviour
                     weaponManager.GetCurrentWeapon().Shoot();
                     // BulletFired()
                 }
+            }
+        }
+    }
+
+    void ZoomInAndOut()
+    {
+        
+        if(weaponManager.GetCurrentWeapon().weaponAim == WeaponAim.AIM)
+        {
+            if(Input.GetMouseButtonDown(1))
+            {
+                zoomAnimator.Play(AnimationTag.ZOOM_IN);
+                crosshair.SetActive(false);
+            }
+            if(Input.GetMouseButtonUp(1))
+            {
+                zoomAnimator.Play(AnimationTag.ZOOM_OUT);
+                crosshair.SetActive(true);
             }
         }
     }
