@@ -4,6 +4,10 @@ Temp
 .user
 .pidb
 .userprefs
+.vs
+.vsconfig
+*.csproj
+*.sln
 Library
 UserSettings
 Temp

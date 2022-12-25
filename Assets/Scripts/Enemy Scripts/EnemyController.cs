@@ -101,12 +101,64 @@ public class EnemyController : MonoBehaviour
 
     void Chase()
     {
+        navAgent.isStopped = false;
+        navAgent.speed = runSpeed;
 
+        navAgent.SetDestination(target.position);
+
+        if (navAgent.velocity.sqrMagnitude > 0)
+        {
+            enemyAnimator.Run(true);
+        }
+        else
+        {
+            enemyAnimator.Run(true);
+        }
+
+        if(Vector3.Distance(transform.position, target.position) <= attackDistance)
+        {
+            enemyAnimator.Run(false);
+            enemyAnimator.Walk(false);
+            enemyState = EnemyState.ATTACK;
+
+            if(chaseDistance != currentChaseDistance)
+            {
+                chaseDistance = currentChaseDistance;
+            }
+        }
+        else if(Vector3.Distance(transform.position, target.position) > chaseDistance)
+        {
+            enemyAnimator.Run(false);
+            enemyState = EnemyState.PATROL;
+            patrolTimer = patrolThisTime;
+
+            if (chaseDistance != currentChaseDistance)
+            {
+                chaseDistance = currentChaseDistance;
+            }
+
+        }
     }
 
     void Attack()
     {
+        navAgent.velocity = Vector3.zero;
+        navAgent.isStopped = true;
 
+        attackTimer += Time.deltaTime;
+
+        if(attackTimer > waitBeforeAttack)
+        {
+            enemyAnimator.Attack();
+            attackTimer = 0;
+
+            //play attack sound
+        }
+
+        if(Vector3.Distance(transform.position, target.position) > attackDistance + chaseAfterAttackDistance)
+        {
+            enemyState = EnemyState.CHASE;
+        }
     }
 
     void SetNewRandomDestination()
