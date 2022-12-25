@@ -24,13 +24,6 @@ public class PlayerAttack : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Shoot();
@@ -91,7 +84,10 @@ public class PlayerAttack : MonoBehaviour
 
         if(Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit))
         {
-            print("Hit: " + hit.transform.gameObject.name);
+            if (hit.transform.tag == Tags.ENEMY_TAG)
+            {
+                hit.transform.GetComponent<HealthScript>().ApplyDamage(damage);
+            }
         }
     }
 }

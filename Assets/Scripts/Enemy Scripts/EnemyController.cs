@@ -21,8 +21,8 @@ public class EnemyController : MonoBehaviour
 
     public float chaseDistance = 7f;
     private float currentChaseDistance;
-    public float attackDistance = 1.8f;
-    public float chaseAfterAttackDistance = 2f;
+    public float attackDistance = 1f;
+    public float chaseAfterAttackDistance = 1f;
 
     public float patrolRadiusMin = 20f, patrolRadiusMax = 60f;
     public float patrolThisTime = 15f;
@@ -32,6 +32,8 @@ public class EnemyController : MonoBehaviour
     private float attackTimer;
 
     private Transform target;
+
+    public GameObject attackPoint;
 
     // Start is called before the first frame update
     void Awake()
@@ -172,5 +174,23 @@ public class EnemyController : MonoBehaviour
 
         NavMesh.SamplePosition(randDirection, out navHit, randRadius, -1);
         navAgent.SetDestination(navHit.position);
+    }
+
+    void TurnOnAttackPoint()
+    {
+        attackPoint.SetActive(true);
+    }
+
+    void TurnOffAttackPoint()
+    {
+        if (attackPoint.activeInHierarchy)
+        {
+            attackPoint.SetActive(false);
+        }
+    }
+
+    public EnemyState EnemyState
+    {
+        get; set;
     }
 }
