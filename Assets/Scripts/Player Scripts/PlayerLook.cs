@@ -31,7 +31,6 @@ public class PlayerLook : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
-
     void Update()
     {
         LockAndUnlockCursor();
@@ -39,7 +38,6 @@ public class PlayerLook : MonoBehaviour
             LookAround();
         }
     }
-
     void LockAndUnlockCursor() 
     {
         if(Input.GetKeyDown(KeyCode.Escape)) 
@@ -55,7 +53,6 @@ public class PlayerLook : MonoBehaviour
             }
         }
     }
-
     void LookAround() 
     {
         currentMouseLook = new Vector2(Input.GetAxis(MouseAxis.Y), Input.GetAxis(MouseAxis.X));

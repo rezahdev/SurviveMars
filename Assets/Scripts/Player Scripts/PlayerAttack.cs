@@ -5,16 +5,15 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private WeaponManager weaponManager;
+    private Animator zoomAnimator;
+    private Camera mainCamera;
+    private GameObject crosshair;
 
     public float fireRate = 15f;
     public float damage = 20f;
     private float nextTimeToFire;
-
-    private Animator zoomAnimator;
+ 
     private bool isZoomed;
-
-    private Camera mainCamera;
-    private GameObject crosshair;
 
     void Awake()
     {
@@ -23,16 +22,13 @@ public class PlayerAttack : MonoBehaviour
         crosshair = GameObject.FindWithTag(Tags.CROSSHAIR);
         mainCamera = Camera.main;
     }
-
     void Update()
     {
         Shoot();
         ZoomInAndOut();
     }
-
     void Shoot()
-    {
-        
+    {  
         if(weaponManager.GetCurrentWeapon().fireType == WeaponFireType.MULTIPLE)
         {
             if(Input.GetMouseButton(0) && Time.time > nextTimeToFire) 
@@ -50,7 +46,6 @@ public class PlayerAttack : MonoBehaviour
                 {
                     weaponManager.GetCurrentWeapon().Shoot();
                 }
-
                 if(weaponManager.GetCurrentWeapon().bulletType == WeaponBulletType.BULLET)
                 {
                     weaponManager.GetCurrentWeapon().Shoot();
@@ -59,10 +54,8 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
-
     void ZoomInAndOut()
     {
-        
         if(weaponManager.GetCurrentWeapon().weaponAim == WeaponAim.AIM)
         {
             if(Input.GetMouseButtonDown(1))
@@ -77,7 +70,6 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
-
     void FireBullet()
     {
         RaycastHit hit;

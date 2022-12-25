@@ -4,48 +4,42 @@ using UnityEngine;
 
 public class PlayerMovementModes : MonoBehaviour
 {
-    public float runSpeed = 10f;
-    public float walkSpeed = 5f;
-    public float crouchSpeed = 2f;
-
-    private float normalHeight = 1.6f;
-    private float crouchHeight = 1f;
-
-    private bool isCrouching;
-
     private PlayerMovement playerMovement;
     private PlayerMovementAudio playerMovementAudio;
     private Transform lookRoot;
+    private PlayerStats playerStats;
 
+    private float normalHeight = 1.6f;
+    private float crouchHeight = 1f;
     private float runVol = 1f;
     private float crouchVol = 0.1f;
     private float walkVolMin = 0.2f;
     private float walkVolMax = 0.6f;
-
     private float walkStepDistance = 0.4f;
     private float runStepDistance = 0.25f;
     private float crouchStepDistance = 0.5f;
-
-    private PlayerStats playerStats;
     private float sprintVal = 100f;
     private float sprintThreshold = 10f;
+
+    private bool isCrouching;
+
+    public float runSpeed = 10f;
+    public float walkSpeed = 5f;
+    public float crouchSpeed = 2f;
 
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         lookRoot = transform.GetChild(0);
-
         playerMovementAudio = GetComponentInChildren<PlayerMovementAudio>();
         playerStats = GetComponent<PlayerStats>();
     }
-
     void Start()
     {
         playerMovementAudio.volMin = walkVolMin;
         playerMovementAudio.volMax = walkVolMax;
         playerMovementAudio.stepDistance = walkStepDistance;
     }
-
     void Update()
     {
         Move();
@@ -53,17 +47,13 @@ public class PlayerMovementModes : MonoBehaviour
 
     void Move() 
     {
-        if(sprintVal > 0f)
+        if(sprintVal > 0f && Input.GetKeyDown(KeyCode.LeftShift) && !isCrouching)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !isCrouching)
-            {
-                playerMovement.speed = runSpeed;
-                playerMovementAudio.stepDistance = runStepDistance;
-                playerMovementAudio.volMin = runVol;
-                playerMovementAudio.volMax = runVol;
-            }
+            playerMovement.speed = runSpeed;
+            playerMovementAudio.stepDistance = runStepDistance;
+            playerMovementAudio.volMin = runVol;
+            playerMovementAudio.volMax = runVol;
         }
-
         if(Input.GetKeyUp(KeyCode.LeftShift) && !isCrouching)
         {
             playerMovement.speed = walkSpeed;
@@ -71,7 +61,6 @@ public class PlayerMovementModes : MonoBehaviour
             playerMovementAudio.volMax = walkVolMax;
             playerMovementAudio.stepDistance = walkStepDistance;
         }
-
         if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
         {
             sprintVal -= sprintThreshold * Time.deltaTime;
@@ -93,7 +82,6 @@ public class PlayerMovementModes : MonoBehaviour
                 sprintVal += (sprintThreshold / 2f) * Time.deltaTime;
                 playerStats.DisplayStaminaStat(sprintVal);
             }
-
             if (sprintVal > 100f)
             {
                 sprintVal = 100f;
@@ -106,7 +94,6 @@ public class PlayerMovementModes : MonoBehaviour
             {
                 lookRoot.localPosition = new Vector3(0f, normalHeight, 0f);
                 playerMovement.speed = walkSpeed;
-
                 playerMovementAudio.volMin = walkVolMin;
                 playerMovementAudio.volMax = walkVolMax;
                 playerMovementAudio.stepDistance = walkStepDistance;
@@ -115,7 +102,6 @@ public class PlayerMovementModes : MonoBehaviour
             {
                 lookRoot.localPosition = new Vector3(0f, crouchHeight, 0f);
                 playerMovement.speed = crouchSpeed;
-
                 playerMovementAudio.stepDistance = crouchStepDistance;
                 playerMovementAudio.volMin = crouchVol;
                 playerMovementAudio.volMax = crouchVol;

@@ -5,38 +5,31 @@ using UnityEngine;
 public class PlayerMovementAudio : MonoBehaviour
 {
     private AudioSource footstepSound;
+    private CharacterController characterController;
 
     [SerializeField]
     private AudioClip[] footstepClip;
 
-    private CharacterController characterController;
-
     [HideInInspector]
-    public float volMin, volMax;
+    public float volMin, volMax, stepDistance;
 
     private float accumulatedDistance;
-
-    [HideInInspector]
-    public float stepDistance;
 
     void Awake()
     {
         footstepSound = GetComponent<AudioSource>();
         characterController = GetComponentInParent<CharacterController>();
     }
-
     void Update()
     {
         PlaySound();
     }
-
     void PlaySound() 
     {
         if(!characterController.isGrounded)
         {
             return;
         }
-
         if(characterController.velocity.sqrMagnitude > 0)
         {
             accumulatedDistance += Time.deltaTime;

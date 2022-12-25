@@ -17,26 +17,17 @@ public class EnemyAudio : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    } 
     public void PlayScreamSound()
     {
         audioSource.clip = screamClip;
         audioSource.Play();
     }
-
     public void PlayAttackSound()
     {
         audioSource.clip = attackClip[Random.Range(0, attackClip.Length)];
         audioSource.Play();
     }
-
     public void PlayDeathSound()
     {
         audioSource.clip = dieClip;

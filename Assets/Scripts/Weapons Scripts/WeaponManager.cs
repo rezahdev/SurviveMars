@@ -14,7 +14,6 @@ public class WeaponManager : MonoBehaviour
         currentWeaponIndex = 0;
         weapons[currentWeaponIndex].gameObject.SetActive(true);
     }
-
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
@@ -35,14 +34,12 @@ public class WeaponManager : MonoBehaviour
         }
         
     }
-
     void SelectWeapon(int weaponIndex) 
     {
         weapons[currentWeaponIndex].gameObject.SetActive(false);
         weapons[weaponIndex].gameObject.SetActive(true);
         currentWeaponIndex = weaponIndex;
     }
-
     public WeaponHandler GetCurrentWeapon()
     {
         return weapons[currentWeaponIndex];

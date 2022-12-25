@@ -15,15 +15,12 @@ public enum WeaponFireType {
 
 public enum WeaponBulletType {
     BULLET,
-    ARROW,
-    SPEAR,
     NONE
 }
 
 public class WeaponHandler : MonoBehaviour
 {
     private Animator animator;
-    public WeaponAim weaponAim;
 
     [SerializeField]
     private GameObject muzzelFlush;
@@ -31,6 +28,7 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField]
     private AudioSource shootSound, reloadSound;
 
+    public WeaponAim weaponAim;
     public WeaponBulletType bulletType;
     public WeaponFireType fireType;
     public GameObject attackPoint;
@@ -39,42 +37,34 @@ public class WeaponHandler : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-
     public void Shoot()
     {
         animator.SetTrigger(AnimationTag.SHOOT_TRIGGER);
     }
-
     public void Aim(bool canAim) 
     {
         animator.SetBool(AnimationTag.AIM_PARAMETER, canAim);
     }
-
     void TurnOnMuzzleFlush()
     {
         muzzelFlush.SetActive(true);
     }
-
     void TurnOffMuzzleFlush()
     {
         muzzelFlush.SetActive(false);
     }
-
     void PlayShootSound()
     {
         shootSound.Play();
     }
-
     void PlayReloadSound()
     {
         reloadSound.Play();
     }
-
     void TurnOnAttackPoint()
     {
         attackPoint.SetActive(true);
     }
-
     void TurnOffAttackPoint()
     {
         if(attackPoint.activeInHierarchy)

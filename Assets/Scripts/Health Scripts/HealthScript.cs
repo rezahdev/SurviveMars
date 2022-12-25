@@ -8,58 +8,42 @@ public class HealthScript : MonoBehaviour
     private EnemyAnimator enemyAnimator;
     private NavMeshAgent navAgent;
     private EnemyController enemyController;
-
-    public float health = 100f;
-
-    public bool isPlayer, isAlien;
+    private EnemyAudio enemyAudio;
+    private PlayerStats playerStats;
 
     private bool isDead;
 
-    private EnemyAudio enemyAudio;
+    public float health = 100f;
+    public bool isPlayer, isAlien;
 
-    private PlayerStats playerStats;
     void Awake()
     {
-        if(isAlien)
+        if (isAlien)
         {
             enemyAnimator = GetComponent<EnemyAnimator>();
             navAgent = GetComponent<NavMeshAgent>();
-            enemyController = GetComponent<EnemyController>();  
+            enemyController = GetComponent<EnemyController>();
 
             enemyAudio = GetComponentInChildren<EnemyAudio>();
         }
-        if(isPlayer)
+        if (isPlayer)
         {
             playerStats = GetComponent<PlayerStats>();
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ApplyDamage(float damage)
     {
-        if(isDead)
-        {
-            return;
-        }
+        if (isDead) return;
 
         health -= damage;
-
         if(isPlayer)
         {
             playerStats.DisplayHealthStat(health);
         }
 
-        if(isAlien)
+        if(isAlien && enemyController.EnemyState == EnemyState.PATROL)
         {
-            if(enemyController.EnemyState == EnemyState.PATROL)
-            {
-                enemyController.chaseDistance = 50f;
-            }
+            enemyController.chaseDistance = 50f;
         }
 
         if(health <= 0f)
@@ -68,7 +52,6 @@ public class HealthScript : MonoBehaviour
             isDead = true;
         }
     }
-
     void PlayerHasDied()
     {
         if(isAlien)
@@ -94,13 +77,11 @@ public class HealthScript : MonoBehaviour
                 enemy.GetComponent<EnemyController>().enabled = false;
             }
 
-            // call enemey manager to stop spawan enemies
             GetComponent<PlayerMovement>().enabled = false;
             GetComponent<PlayerAttack>().enabled = false;
             GetComponent<WeaponManager>().GetCurrentWeapon().gameObject.SetActive(false);
 
             EnemyManager.instance.StopSpawninning();
-
         }
 
         if(tag == Tags.PLAYER_TAG)
@@ -112,17 +93,14 @@ public class HealthScript : MonoBehaviour
             Invoke("TurnOffGameObject", 3f);
         }
     }
-
     void RestartGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
     }
-
     void TurnOffGameObject()
     {
         gameObject.SetActive(false);
     }
-
     IEnumerator EnemyDeathSound()
     {
         yield return new WaitForSeconds(0.3f);

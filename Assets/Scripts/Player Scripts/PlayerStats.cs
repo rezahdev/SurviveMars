@@ -10,13 +10,10 @@ public class PlayerStats : MonoBehaviour
     
     public void DisplayHealthStat(float val)
     {
-        val /= 100f;
-        healthStat.fillAmount = val;
+        healthStat.fillAmount = val / 100f;
     }
-
     public void DisplayStaminaStat(float val)
     {
-        val /= 100f;
-        staminaStat.fillAmount = val;
+        staminaStat.fillAmount = val / 100f;
     }
 }
