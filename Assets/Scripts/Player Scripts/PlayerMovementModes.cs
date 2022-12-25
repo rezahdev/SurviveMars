@@ -26,12 +26,17 @@ public class PlayerMovementModes : MonoBehaviour
     private float runStepDistance = 0.25f;
     private float crouchStepDistance = 0.5f;
 
+    private PlayerStats playerStats;
+    private float sprintVal = 100f;
+    private float sprintThreshold = 10f;
+
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         lookRoot = transform.GetChild(0);
 
         playerMovementAudio = GetComponentInChildren<PlayerMovementAudio>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
     void Start()
@@ -48,12 +53,15 @@ public class PlayerMovementModes : MonoBehaviour
 
     void Move() 
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !isCrouching) 
+        if(sprintVal > 0f)
         {
-            playerMovement.speed = runSpeed;
-            playerMovementAudio.stepDistance = runStepDistance;
-            playerMovementAudio.volMin = runVol;
-            playerMovementAudio.volMax = runVol;
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !isCrouching)
+            {
+                playerMovement.speed = runSpeed;
+                playerMovementAudio.stepDistance = runStepDistance;
+                playerMovementAudio.volMin = runVol;
+                playerMovementAudio.volMax = runVol;
+            }
         }
 
         if(Input.GetKeyUp(KeyCode.LeftShift) && !isCrouching)
@@ -64,7 +72,35 @@ public class PlayerMovementModes : MonoBehaviour
             playerMovementAudio.stepDistance = walkStepDistance;
         }
 
-        if(Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+        {
+            sprintVal -= sprintThreshold * Time.deltaTime;
+            if(sprintVal < 0f)
+            {
+                sprintVal = 0f;
+
+                playerMovement.speed = walkSpeed;
+                playerMovementAudio.volMin = walkVolMin;
+                playerMovementAudio.volMax = walkVolMax;
+                playerMovementAudio.stepDistance = walkStepDistance;
+            }
+            playerStats.DisplayStaminaStat(sprintVal);
+        }
+        else
+        {
+            if(sprintVal != 100f)
+            {
+                sprintVal += (sprintThreshold / 2f) * Time.deltaTime;
+                playerStats.DisplayStaminaStat(sprintVal);
+            }
+
+            if (sprintVal > 100f)
+            {
+                sprintVal = 100f;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
         {
             if(isCrouching) 
             {

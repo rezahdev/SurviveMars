@@ -15,7 +15,9 @@ public class HealthScript : MonoBehaviour
 
     private bool isDead;
 
-    // Start is called before the first frame update
+    private EnemyAudio enemyAudio;
+
+    private PlayerStats playerStats;
     void Awake()
     {
         if(isAlien)
@@ -24,11 +26,11 @@ public class HealthScript : MonoBehaviour
             navAgent = GetComponent<NavMeshAgent>();
             enemyController = GetComponent<EnemyController>();  
 
-            //get enemy audio
+            enemyAudio = GetComponentInChildren<EnemyAudio>();
         }
         if(isPlayer)
         {
-
+            playerStats = GetComponent<PlayerStats>();
         }
     }
 
@@ -49,7 +51,7 @@ public class HealthScript : MonoBehaviour
 
         if(isPlayer)
         {
-            //show stats
+            playerStats.DisplayHealthStat(health);
         }
 
         if(isAlien)
@@ -79,8 +81,7 @@ public class HealthScript : MonoBehaviour
             navAgent.enabled = false;
             enemyAnimator.enabled = false;
 
-
-            //start couroutine
+            StartCoroutine(EnemyDeathSound());
             //enemy manager - spawn more enemnies
         }
 
@@ -118,5 +119,11 @@ public class HealthScript : MonoBehaviour
     void TurnOffGameObject()
     {
         gameObject.SetActive(false);
+    }
+
+    IEnumerator EnemyDeathSound()
+    {
+        yield return new WaitForSeconds(0.3f);
+        enemyAudio.PlayDeathSound();
     }
 }
