@@ -353,10 +353,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ff135e2b79b4d45994a099fefe48e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponAim: 2
   muzzelFlush: {fileID: 1917401830}
   shootSound: {fileID: 162770063}
   reloadSound: {fileID: 0}
+  weaponAim: 2
   bulletType: 0
   fireType: 0
   attackPoint: {fileID: 0}
@@ -1078,7 +1078,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3754a79fcfa0ea440ae27e8acd01969b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: df81ff13b4e27490a97d74c1f325fe4e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1424,10 +1424,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ff135e2b79b4d45994a099fefe48e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponAim: 2
   muzzelFlush: {fileID: 261573411}
   shootSound: {fileID: 1106615873}
   reloadSound: {fileID: 0}
+  weaponAim: 2
   bulletType: 0
   fireType: 1
   attackPoint: {fileID: 0}
@@ -2228,10 +2228,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ff135e2b79b4d45994a099fefe48e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponAim: 2
   muzzelFlush: {fileID: 1253356197}
   shootSound: {fileID: 1391472405}
   reloadSound: {fileID: 1391472406}
+  weaponAim: 2
   bulletType: 0
   fireType: 0
   attackPoint: {fileID: 0}
@@ -2758,10 +2758,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ff135e2b79b4d45994a099fefe48e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponAim: 0
   muzzelFlush: {fileID: 0}
   shootSound: {fileID: 0}
   reloadSound: {fileID: 0}
+  weaponAim: 0
   bulletType: 3
   fireType: 0
   attackPoint: {fileID: 13186605}
