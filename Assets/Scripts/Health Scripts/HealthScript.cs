@@ -82,7 +82,7 @@ public class HealthScript : MonoBehaviour
             enemyAnimator.enabled = false;
 
             StartCoroutine(EnemyDeathSound());
-            EnemyManager.InitEnemyManager().EnemyHasDied();
+            EnemyManager.instance.EnemyHasDied();
         }
 
         if(isPlayer)
@@ -99,7 +99,7 @@ public class HealthScript : MonoBehaviour
             GetComponent<PlayerAttack>().enabled = false;
             GetComponent<WeaponManager>().GetCurrentWeapon().gameObject.SetActive(false);
 
-            EnemyManager.InitEnemyManager().StopSpawninning();
+            EnemyManager.instance.StopSpawninning();
 
         }
 

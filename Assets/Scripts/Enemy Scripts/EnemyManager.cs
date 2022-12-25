@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    private static EnemyManager instance;
+    public static EnemyManager instance;
 
     [SerializeField]
     private GameObject alienPrefab;
@@ -14,7 +14,7 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField]
     private int enemyCount = 16;
-    private int initialEnemyCount;
+    private int enemyLimit;
 
     public float waitBeforeSpawnTime = 10f;
     private int spawnMultiplier = 1;
@@ -27,26 +27,22 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
-        initialEnemyCount = enemyCount;
-
+        enemyLimit = enemyCount;
         SpawnEnemies();
-
         StartCoroutine("CheckToSpawnEnemies");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
-    public static EnemyManager InitEnemyManager()
+    void InitEnemyManager()
     {
         if(instance == null)
         {
-            instance = new EnemyManager();
+            instance = this;
         }
-        return instance;
     }
 
     void SpawnEnemies()
@@ -80,10 +76,12 @@ public class EnemyManager : MonoBehaviour
     public void EnemyHasDied()
     {
         enemyCount++;
-        if (enemyCount > initialEnemyCount)
+        print(enemyCount + " / " + enemyLimit);
+        if (enemyCount > enemyLimit)
         {
-            enemyCount = initialEnemyCount;
+            enemyCount = enemyLimit;
         }
+        print(enemyCount);
     }
 
     public void StopSpawninning()
