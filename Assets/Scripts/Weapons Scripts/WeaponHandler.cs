@@ -21,12 +21,14 @@ public enum WeaponBulletType {
 public class WeaponHandler : MonoBehaviour
 {
     private Animator animator;
-
+  
     [SerializeField]
     private GameObject muzzelFlush;
 
     [SerializeField]
     private AudioSource shootSound, reloadSound;
+
+    private bool isTriggeredByWeaponChange;
 
     public WeaponAim weaponAim;
     public WeaponBulletType bulletType;
@@ -35,6 +37,7 @@ public class WeaponHandler : MonoBehaviour
 
     void Awake()
     {
+        isTriggeredByWeaponChange = false;
         animator = GetComponent<Animator>();
     }
     public void Shoot()
@@ -47,7 +50,14 @@ public class WeaponHandler : MonoBehaviour
     }
     void TurnOnMuzzleFlush()
     {
-        muzzelFlush.SetActive(true);
+        if(!isTriggeredByWeaponChange)
+        {
+            muzzelFlush.SetActive(true);
+        }
+        else
+        {
+            isTriggeredByWeaponChange = false;
+        }
     }
     void TurnOffMuzzleFlush()
     {
@@ -55,7 +65,14 @@ public class WeaponHandler : MonoBehaviour
     }
     void PlayShootSound()
     {
-        shootSound.Play();
+        if(!isTriggeredByWeaponChange)
+        {
+            shootSound.Play();
+        }
+        else
+        {
+            isTriggeredByWeaponChange = false;
+        }    
     }
     void PlayReloadSound()
     {

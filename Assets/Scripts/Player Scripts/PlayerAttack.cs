@@ -9,11 +9,9 @@ public class PlayerAttack : MonoBehaviour
     private Camera mainCamera;
     private GameObject crosshair;
 
+    private float nextTimeToFire;
     public float fireRate = 15f;
     public float damage = 20f;
-    private float nextTimeToFire;
- 
-    private bool isZoomed;
 
     void Awake()
     {

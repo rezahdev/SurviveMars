@@ -11,26 +11,26 @@ public class WeaponManager : MonoBehaviour
 
     void Start()
     {
-        currentWeaponIndex = 0;
+        currentWeaponIndex = 1;
         weapons[currentWeaponIndex].gameObject.SetActive(true);
     }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SelectWeapon(0);
-        }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
             SelectWeapon(1);
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha3))
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SelectWeapon(3);
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3))
         {
             SelectWeapon(2);
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha4))
+        if(Input.GetKeyDown(KeyCode.Alpha4))
         {
-            SelectWeapon(3);
+            SelectWeapon(0);
         }
         
     }
