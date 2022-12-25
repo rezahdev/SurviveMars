@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -52,6 +53,11 @@ public class EnemyManager : MonoBehaviour
             for(int j=0; j<spawnMultiplier; j++)
             {
                 Instantiate(alienPrefab, alienSpawnPoints[index].position, Quaternion.identity);
+                alienPrefab.SetActive(true);
+                alienPrefab.GetComponent<Animator>().enabled = true;
+                alienPrefab.GetComponent<EnemyController>().enabled = true;
+                alienPrefab.GetComponent<NavMeshAgent>().enabled = true;
+                alienPrefab.GetComponent<EnemyAnimator>().enabled = true;
             }
             index++;
         }
