@@ -16,6 +16,8 @@ public class HealthScript : MonoBehaviour
     public float health = 100f;
     public bool isPlayer, isAlien;
 
+    private WeaponManager weaponManager;
+
     void Awake()
     {
         if (isAlien)
@@ -24,6 +26,7 @@ public class HealthScript : MonoBehaviour
             navAgent = GetComponent<NavMeshAgent>();
             enemyController = GetComponent<EnemyController>();
             enemyAudio = GetComponentInChildren<EnemyAudio>();
+            playerStats = GameObject.FindGameObjectsWithTag(Tags.PLAYER_TAG)[0].GetComponent<PlayerStats>();
         }
         if (isPlayer)
         {
@@ -65,6 +68,8 @@ public class HealthScript : MonoBehaviour
 
             StartCoroutine(EnemyDeathSound());
             EnemyManager.instance.EnemyHasDied();
+
+            playerStats.UpdateKillCount();
         }
 
         if(isPlayer)

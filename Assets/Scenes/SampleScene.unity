@@ -1982,7 +1982,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Alien Killed: 0'
+  m_text: 'Kills: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4112,6 +4112,10 @@ PrefabInstance:
     - target: {fileID: 4457620023695830768, guid: c390cfbc8d677bb4fba858134bbb6590, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.020249208
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457620023704813940, guid: c390cfbc8d677bb4fba858134bbb6590, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4457620023704813940, guid: c390cfbc8d677bb4fba858134bbb6590, type: 3}
       propertyPath: m_Controller
