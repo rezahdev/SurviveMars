@@ -23,7 +23,6 @@ public class HealthScript : MonoBehaviour
             enemyAnimator = GetComponent<EnemyAnimator>();
             navAgent = GetComponent<NavMeshAgent>();
             enemyController = GetComponent<EnemyController>();
-
             enemyAudio = GetComponentInChildren<EnemyAudio>();
         }
         if (isPlayer)

@@ -16,4 +16,5 @@ public class PlayerStats : MonoBehaviour
     {
         staminaStat.fillAmount = val / 100f;
     }
+    
 }

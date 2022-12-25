@@ -17,12 +17,16 @@ public class EnemyManager : MonoBehaviour
 
     private int enemyLimit;
     private int spawnMultiplier = 1;
+    private int enemyKillCount = 0;
 
     public float waitBeforeSpawnTime = 10f;
+
+    private KillStats killStats;
 
     void Awake()
     {
         InitEnemyManager();
+        killStats = GetComponent<KillStats>();  
     }
     void Start()
     {
@@ -66,10 +70,12 @@ public class EnemyManager : MonoBehaviour
     public void EnemyHasDied()
     {
         enemyCount++;
+        enemyKillCount++;
         if (enemyCount > enemyLimit)
         {
             enemyCount = enemyLimit;
         }
+        killStats.UpdateKillCount(enemyKillCount);
     }
     public void StopSpawninning()
     {
