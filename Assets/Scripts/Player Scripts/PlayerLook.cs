@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerLook : MonoBehaviour
 {
@@ -46,7 +48,7 @@ public class PlayerLook : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.None;
             }
-            else 
+            else if(GlobalSettings.IsGamePlaying)
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;

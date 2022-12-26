@@ -69,7 +69,7 @@ public class HealthScript : MonoBehaviour
             StartCoroutine(EnemyDeathSound());
             EnemyManager.instance.EnemyHasDied();
 
-            playerStats.UpdateKillCount();
+            playerStats.UpdateScore(true);
         }
 
         if(isPlayer)
@@ -86,6 +86,7 @@ public class HealthScript : MonoBehaviour
             GetComponent<WeaponManager>().GetCurrentWeapon().gameObject.SetActive(false);
 
             EnemyManager.instance.StopSpawninning();
+ 
         }
 
         if(tag == Tags.PLAYER_TAG)
@@ -99,7 +100,7 @@ public class HealthScript : MonoBehaviour
     }
     void RestartGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+        GameObject.Find("Gameplay Controller").GetComponent<GameplayController>().EndGame();
     }
     void TurnOffGameObject()
     {

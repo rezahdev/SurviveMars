@@ -17,7 +17,6 @@ public class EnemyManager : MonoBehaviour
     private int enemyCount = 16;
 
     private int enemyLimit;
-    private int spawnMultiplier = 1;
 
     public float waitBeforeSpawnTime = 10f;
 
@@ -50,18 +49,18 @@ public class EnemyManager : MonoBehaviour
             {
                 index = 0;
             }
-            for(int j=0; j<spawnMultiplier; j++)
+            for(int j=0; j<2; j++)
             {
                 Instantiate(alienPrefab, alienSpawnPoints[index].position, Quaternion.identity);
                 alienPrefab.SetActive(true);
                 alienPrefab.GetComponent<Animator>().enabled = true;
                 alienPrefab.GetComponent<EnemyController>().enabled = true;
+                alienPrefab.GetComponent<BoxCollider>().isTrigger = false;
                 alienPrefab.GetComponent<NavMeshAgent>().enabled = true;
                 alienPrefab.GetComponent<EnemyAnimator>().enabled = true;
             }
             index++;
         }
-        spawnMultiplier++;
         enemyCount = 0;
     }
     IEnumerator CheckToSpawnEnemies()

@@ -37,7 +37,6 @@ public class WeaponManager : MonoBehaviour
     void SelectWeapon(int weaponIndex) 
     {
         weapons[currentWeaponIndex].gameObject.SetActive(false);
-        weapons[weaponIndex].gameObject.GetComponent<Animator>().enabled = false;
         weapons[weaponIndex].gameObject.SetActive(true);
         currentWeaponIndex = weaponIndex;
     }

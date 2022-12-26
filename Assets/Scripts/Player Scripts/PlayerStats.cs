@@ -13,7 +13,12 @@ public class PlayerStats : MonoBehaviour
     private TextMeshProUGUI enemyKillCountText;
 
     private int killCount = 0;
+    private float scorePerKill = 3f;
 
+    void Update()
+    {
+        UpdateScore();
+    }
     public void DisplayHealthStat(float val)
     {
         healthStat.fillAmount = val / 100f;
@@ -22,9 +27,19 @@ public class PlayerStats : MonoBehaviour
     {
         staminaStat.fillAmount = val / 100f;
     }
-    public void UpdateKillCount()
+    public void UpdateScore(bool isEnemyKilled = false)
     {
-        print(killCount++);
-        enemyKillCountText.text = "Kills: " + killCount.ToString();
+        if(isEnemyKilled)
+        {
+            killCount++;
+            scorePerKill += 0.5f; 
+        }
+        GlobalSettings.PlayerScore = Mathf.FloorToInt((killCount * scorePerKill) + 0.1f);
+        enemyKillCountText.text = "Score: " + GlobalSettings.PlayerScore.ToString();
+    }
+    public void SetScoreToZero()
+    {
+        killCount = 0;
+        enemyKillCountText.text = "Score: " + GlobalSettings.PlayerScore.ToString();
     }
 }
