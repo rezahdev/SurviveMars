@@ -86,21 +86,13 @@ public class HealthScript : MonoBehaviour
             GetComponent<WeaponManager>().GetCurrentWeapon().gameObject.SetActive(false);
 
             EnemyManager.instance.StopSpawninning();
- 
+            GameObject.Find("Gameplay Controller").GetComponent<GameplayController>().EndGame();
         }
 
-        if(tag == Tags.PLAYER_TAG)
-        {
-            Invoke("RestartGame", 3f);
-        }
-        else
+        if(tag == Tags.ENEMY_TAG)
         {
             Invoke("TurnOffGameObject", 3f);
         }
-    }
-    void RestartGame()
-    {
-        GameObject.Find("Gameplay Controller").GetComponent<GameplayController>().EndGame();
     }
     void TurnOffGameObject()
     {

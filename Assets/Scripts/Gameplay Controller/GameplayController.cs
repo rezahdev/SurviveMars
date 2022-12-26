@@ -108,6 +108,7 @@ public class GameplayController : MonoBehaviour
 
     public void EndGame()
     {
+        print("hsgfhdfgh");
         GlobalSettings.IsGamePlaying = false;
         GlobalSettings.IsGamePaused = false;
         GlobalSettings.IsGameFinished = true;
@@ -124,9 +125,18 @@ public class GameplayController : MonoBehaviour
             if (typeof(GameObject).IsAssignableFrom(o.GetType()))
             {
                 GameObject go = (GameObject)o;
-                if (go.name == "Gameplay Canvas")
-                {          
+                if (go.name == "Player"
+                   || go.name == "Crosshair Canvas"
+                   || go.name == "Alien"
+                   || go.name == "Enemy Manager"
+                   || go.name == "Gameplay Canvas"
+                   || go.name == "Alien(Clone)")
+                {
                     go.SetActive(false);
+                }
+                else if (go.name == "Menu Canvas" || go.name == "Menu Camera")
+                {
+                    go.SetActive(true);
                 }
                 else if (go.name == "Player" && go.GetComponent<PlayerStats>())
                 {
