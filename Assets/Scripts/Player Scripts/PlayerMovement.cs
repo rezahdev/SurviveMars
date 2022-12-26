@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float verticalVelocity = 0f;
 
     public float speed = 5f;
-    public float jumpForce = 2f;
+    private float jumpForce = 2.8f;
 
     void Awake()
     {

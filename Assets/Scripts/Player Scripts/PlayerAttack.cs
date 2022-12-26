@@ -7,6 +7,8 @@ public class PlayerAttack : MonoBehaviour
     private WeaponManager weaponManager;
     private Animator zoomAnimator;
     private Camera mainCamera;
+
+    [SerializeField]
     private GameObject crosshair;
 
     private float nextTimeToFire;
@@ -17,7 +19,7 @@ public class PlayerAttack : MonoBehaviour
     {
         weaponManager = GetComponent<WeaponManager>();
         zoomAnimator = transform.Find(Tags.LOOK_ROOT).transform.Find(Tags.ZOOM_CAMERA).GetComponent<Animator>();
-        crosshair = GameObject.FindWithTag(Tags.CROSSHAIR);
+        //crosshair = GameObject.FindWithTag(Tags.CROSSHAIR);
         mainCamera = Camera.main;
     }
     void Update()
