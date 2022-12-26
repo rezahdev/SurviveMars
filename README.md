@@ -13,4 +13,4 @@ Clone, build, and try surviving in Mars.
 
 ## Brief Demo of the Game
 ![Demo 1](Github/Demo1.gif)
-![Demo 2](Github/Demo2.gi)
+![Demo 2](Github/Demo2.gif)
