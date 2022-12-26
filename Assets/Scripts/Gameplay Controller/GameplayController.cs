@@ -8,13 +8,14 @@ using UnityEngine.UI;
 public class GameplayController : MonoBehaviour
 {
     [SerializeField]
-    private Button startButton;
+    private Button startButton, exitButton;
 
     private bool isPaused = false;
 
     void Awake()
     {
         startButton.onClick.AddListener(StartGame);
+        exitButton.onClick.AddListener(ExitGame);
     }
     void Update()
     {
@@ -100,7 +101,7 @@ public class GameplayController : MonoBehaviour
                 }
                 else if (go.name == "Welcome Text")
                 {
-                    go.GetComponent<TextMeshProUGUI>().text = "AlienHunt Paused!";
+                    go.GetComponent<TextMeshProUGUI>().text = "Game is Paused!";
                 }
             }
         }
@@ -169,5 +170,10 @@ public class GameplayController : MonoBehaviour
     public void RestartGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
