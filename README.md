@@ -6,7 +6,7 @@ NOTE: Preview might appear blurred due to the conversion of the video.
 ![Demo 1](Github/Demo1.gif)
 
 ## Install and Play
-You can down a zipped build of the game by [Clicking here](Zip_build/SurviveMars.zip). 
+You can download a zipped build of the game by [Clicking here](Zip_build/SurviveMars.zip). 
 
 ## Future Improvement
  - Ammo limit should be specified for each weapon. 
