@@ -1,2 +1,2 @@
-This project uses free assets and coding guides provided by the Awesometuts and free assts by Artstation.com (accessed via Unity asset store). 
+This project uses some third-party assets provided by the Awesometuts and Artstation.com (accessed via Unity asset store). 
  
