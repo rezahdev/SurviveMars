@@ -1,9 +1,6 @@
 ## Unity 3D Game - SurviveMars
 SurviveMars is a 3D desktop-compatible FPS survival type game built on Unity with C#. I developed this game on top of a guided project to revisit the Unity game engine functionalities. The game attempts to create a Mars-like environment while challenging the player to survive from Alien/Zombie attack. :video_game:
 
-## Install and Play
-You can download a zipped build of the game by [Clicking here](Zip_build/SurviveMars.zip). 
-
 ## Future Improvement
  - Ammo limit should be specified for each weapon. 
  - Some kind of stamina booster or food hidden throughout the map to be collected for points, stamina, or survival.
