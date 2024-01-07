@@ -6,4 +6,4 @@ SurviveMars is a 3D desktop-compatible FPS survival type game built on Unity wit
  - Some kind of stamina booster or food hidden throughout the map to be collected for points, stamina, or survival.
 
 ## Acknowledgement
-Please refer to the Credits.txt file in the project folder to find references for some third party assets used in this projects.
+Credits.txt file in the project folder to find references for some third party assets used in this projects.
